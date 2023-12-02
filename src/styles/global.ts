@@ -21,10 +21,20 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-size: 1rem;
+    line-height: 1.3;
   }
 
   h1, h2, h3, h4 {
     font-family: "Baloo 2", sans-serif;
     color: ${(props) => props.theme['base-900']};
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    color: currentColor;
+    text-decoration: none;
   }
 `
