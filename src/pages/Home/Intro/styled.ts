@@ -7,10 +7,7 @@ export const IntroBackground = styled.section`
   width: 100%;
   margin: 0 auto;
 
-  padding-left: 6rem;
-  padding-right: 6rem;
-
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
@@ -23,8 +20,6 @@ export const IntroBackground = styled.section`
     }
   }
 `
-
-export const ActionsCardCoffee = styled.div``
 
 export const IntroContainer = styled.div`
   max-width: 70rem;
@@ -48,7 +43,7 @@ export const IntroContainer = styled.div`
   ul {
     margin-top: 3.5rem;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, auto));
     gap: 20px 40px;
   }
 

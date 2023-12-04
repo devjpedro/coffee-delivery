@@ -5,7 +5,7 @@ export const MainContainer = styled.main`
   width: 100%;
   margin: 2rem auto;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
