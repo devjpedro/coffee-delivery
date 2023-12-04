@@ -17,6 +17,7 @@ export default function Intro() {
               <ShoppingCart className="cart" weight="fill" size={20} />
               Compra simples e segura
             </li>
+
             <li>
               <Package className="package" weight="fill" size={20} />
               Embalagem mantém o café intacto

@@ -18,8 +18,13 @@ export const IntroBackground = styled.section`
   @media (max-width: 600px) {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+    img {
+      display: none;
+    }
   }
 `
+
+export const ActionsCardCoffee = styled.div``
 
 export const IntroContainer = styled.div`
   max-width: 70rem;
