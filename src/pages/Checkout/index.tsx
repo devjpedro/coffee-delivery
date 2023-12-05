@@ -8,8 +8,9 @@ import {
   Plus,
   Trash,
 } from 'phosphor-react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import ExpressoImg from '../../assets/CoffeeImages/expresso.png'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
 import {
   ActionsCoffee,
   AddressContainer,
@@ -31,7 +32,7 @@ import {
 
 export default function Checkout() {
   const navigate = useNavigate()
-
+  const { coffees } = useContext(CoffeeContext)
   return (
     <MainContainer>
       <CompleteOrder>
@@ -87,28 +88,37 @@ export default function Checkout() {
         <h3>Cafés selecionados</h3>
         <CheckoutContainer>
           <CheckoutCoffee>
-            <Coffee>
-              <img src={ExpressoImg} alt="" />
-              <ActionsCoffee>
-                <span>Expresso Tradicional</span>
-                <div>
-                  <AmountCounter>
-                    <button>
-                      <Minus />
-                    </button>
-                    <span>1</span>
-                    <button>
-                      <Plus />
-                    </button>
-                  </AmountCounter>
-                  <RemoveButton>
-                    <Trash size={16} />
-                    Remover
-                  </RemoveButton>
-                </div>
-              </ActionsCoffee>
-            </Coffee>
-            <CoffeePrice>R$ 9,90</CoffeePrice>
+            {coffees.map((coffee) => {
+              return (
+                <>
+                  <Coffee key={coffee.coffeeName}>
+                    <div className="coffeeDetail">
+                      <img src={coffee.coffeeImage} alt="" />
+                      <ActionsCoffee>
+                        <span>{coffee.coffeeName}</span>
+                        <div>
+                          <AmountCounter>
+                            <button>
+                              <Minus />
+                            </button>
+                            <span>{coffee.coffeeAmount}</span>
+                            <button>
+                              <Plus />
+                            </button>
+                          </AmountCounter>
+                          <RemoveButton>
+                            <Trash size={16} />
+                            Remover
+                          </RemoveButton>
+                        </div>
+                      </ActionsCoffee>
+                    </div>
+
+                    <CoffeePrice>{`R$ ${coffee.coffeePrice}`}</CoffeePrice>
+                  </Coffee>
+                </>
+              )
+            })}
           </CheckoutCoffee>
           <OrderSummary>
             <div>
