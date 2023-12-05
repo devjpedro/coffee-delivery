@@ -7,9 +7,9 @@ import {
   Money,
   Plus,
   Trash,
-} from "phosphor-react";
-import { useNavigate } from "react-router-dom";
-import ExpressoImg from "../../assets/CoffeeImages/expresso.png";
+} from 'phosphor-react'
+import { useNavigate } from 'react-router-dom'
+import ExpressoImg from '../../assets/CoffeeImages/expresso.png'
 import {
   ActionsCoffee,
   AddressContainer,
@@ -27,10 +27,10 @@ import {
   PaymentMethod,
   RemoveButton,
   SelectedCoffees,
-} from "./styled";
+} from './styled'
 
 export default function Checkout() {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <MainContainer>
@@ -124,11 +124,11 @@ export default function Checkout() {
               <strong>R$ 33,20</strong>
             </div>
           </OrderSummary>
-          <ConfirmOrder onClick={() => navigate("/success")}>
+          <ConfirmOrder onClick={() => navigate('/success')}>
             Confirmar pedido
           </ConfirmOrder>
         </CheckoutContainer>
       </SelectedCoffees>
     </MainContainer>
-  );
+  )
 }

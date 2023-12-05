@@ -1,17 +1,23 @@
-import { MapPin } from 'phosphor-react'
+import { MapPin, ShoppingCart } from 'phosphor-react'
+import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import { Cart, HeaderContainer, Location } from './styled'
 
 export default function Header() {
+  const navigate = useNavigate()
   return (
     <HeaderContainer>
-      <img src={Logo} alt="" />
+      <Link to="/">
+        <img src={Logo} alt="" />
+      </Link>
       <div>
         <Location>
           <MapPin size={22} weight="fill" />
           Brasília, DF
         </Location>
-        <Cart size={22} weight="fill" />
+        <Cart onClick={() => navigate('/checkout')}>
+          <ShoppingCart size={22} weight="fill" />
+        </Cart>
       </div>
     </HeaderContainer>
   )

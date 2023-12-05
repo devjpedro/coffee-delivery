@@ -1,4 +1,3 @@
-import { ShoppingCart } from 'phosphor-react'
 import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
@@ -41,11 +40,13 @@ export const Location = styled.span`
     color: ${(props) => props.theme['purple-500']};
   }
 `
-export const Cart = styled(ShoppingCart)`
+export const Cart = styled.button`
   width: 42px;
   height: 42px;
   padding: 0.625rem;
   background: ${(props) => props.theme['yellow-300']};
   color: ${(props) => props.theme['yellow-700']};
   border-radius: 6px;
+  border: 0;
+  cursor: pointer;
 `
