@@ -10,7 +10,7 @@ import {
 } from 'phosphor-react'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { CoffeeContext } from '../../contexts/CoffeeContext'
+import { CoffeeContext, CoffeeProps } from '../../contexts/CoffeeContext'
 import {
   ActionsCoffee,
   AddressContainer,
@@ -32,7 +32,15 @@ import {
 
 export default function Checkout() {
   const navigate = useNavigate()
-  const { coffees } = useContext(CoffeeContext)
+  const { coffees, setCoffees } = useContext(CoffeeContext)
+
+  function handleRemoveCoffee(coffeeToRemove: CoffeeProps) {
+    const coffeesWithoutDeletedOne = coffees.filter((coffee) => {
+      return coffee.coffeeName !== coffeeToRemove.coffeeName
+    })
+    setCoffees(coffeesWithoutDeletedOne)
+    console.log(coffeesWithoutDeletedOne)
+  }
   return (
     <MainContainer>
       <CompleteOrder>
@@ -106,7 +114,9 @@ export default function Checkout() {
                               <Plus />
                             </button>
                           </AmountCounter>
-                          <RemoveButton>
+                          <RemoveButton
+                            onClick={() => handleRemoveCoffee(coffee)}
+                          >
                             <Trash size={16} />
                             Remover
                           </RemoveButton>

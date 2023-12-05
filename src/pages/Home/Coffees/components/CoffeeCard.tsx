@@ -40,8 +40,17 @@ export function CoffeeCard({
       coffeeAmount,
     }
 
-    setCoffees([...coffees, newCoffee])
-    console.log(coffees)
+    const coffeeIndex = coffees.findIndex(
+      (coffee) => coffee.coffeeName === newCoffee.coffeeName,
+    )
+
+    if (coffeeIndex === -1) {
+      setCoffees([...coffees, newCoffee])
+    } else {
+      const updatedCoffees = [...coffees]
+      updatedCoffees[coffeeIndex].coffeeAmount += newCoffee.coffeeAmount
+      setCoffees(updatedCoffees)
+    }
   }
 
   return (
