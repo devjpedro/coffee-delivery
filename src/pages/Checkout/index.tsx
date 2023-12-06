@@ -65,7 +65,13 @@ export default function Checkout() {
     setCoffees(coffeesWithoutDeletedOne)
   }
 
-  console.log(coffees.length)
+  const totalValueOrder = coffees.reduce(
+    (acc, currentValue) =>
+      acc + currentValue.coffeeAmount * currentValue.coffeePrice,
+    0,
+  )
+  const deliveryFee = 3.5
+  const totalValueOrderWithDeliveryFee = Number(totalValueOrder + deliveryFee)
 
   return (
     <MainContainer>
@@ -165,15 +171,21 @@ export default function Checkout() {
               <OrderSummary>
                 <div>
                   <p>Total de itens</p>
-                  <span>R$ 29,70</span>
+                  <span>{`R$ ${totalValueOrder
+                    .toFixed(2)
+                    .replace('.', ',')}`}</span>
                 </div>
                 <div>
                   <p>Entrega</p>
-                  <span>R$ 3,50</span>
+                  <span>{`R$ ${deliveryFee
+                    .toFixed(2)
+                    .replace('.', ',')}`}</span>
                 </div>
                 <div>
                   <strong>Total</strong>
-                  <strong>R$ 33,20</strong>
+                  <strong>{`R$ ${totalValueOrderWithDeliveryFee
+                    .toFixed(2)
+                    .replace('.', ',')}`}</strong>
                 </div>
               </OrderSummary>
               <ConfirmOrder onClick={() => navigate('/success')}>

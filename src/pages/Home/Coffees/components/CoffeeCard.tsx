@@ -64,7 +64,7 @@ export function CoffeeCard({
       <strong>{coffeeName}</strong>
       <p>{coffeeDescription}</p>
       <FooterCoffeeCard>
-        <strong>{coffeePrice}</strong>
+        <strong>{coffeePrice.toFixed(2).replace('.', ',')}</strong>
         <ActionsCardCoffee>
           <AmountCounter>
             <button onClick={handleSubtract}>
