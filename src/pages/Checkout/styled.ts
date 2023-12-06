@@ -150,7 +150,7 @@ export const PaymentMethod = styled.div`
 
 export const SelectedCoffees = styled.div`
   flex: 1;
-  max-width: 28rem;
+  max-width: 30rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;

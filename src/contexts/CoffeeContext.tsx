@@ -9,7 +9,7 @@ type CoffeeTags =
 export interface CoffeeProps {
   coffeeName: string
   coffeeDescription: string
-  coffeePrice: string
+  coffeePrice: number
   coffeeImage: string
   coffeeTags: CoffeeTags[]
   coffeeAmount: number

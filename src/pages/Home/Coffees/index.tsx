@@ -24,98 +24,112 @@ export default function Coffees() {
         <CoffeeCard
           coffeeName="Expresso Tradicional"
           coffeeDescription="O tradicional café feito com água quente e grãos moídos"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={ExpressoImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Expresso Americano"
           coffeeDescription="Expresso diluído, menos intenso que o tradicional"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={ExpressoAmericanoImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Expresso Cremoso"
           coffeeDescription="Café expresso tradicional com espuma cremosa"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={ExpressoCremosoImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Expresso Gelado"
           coffeeDescription="Bebida preparada com café expresso e cubos de gelo"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={ExpressoGeladoImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Café com Leite"
           coffeeDescription="Meio a meio de expresso tradicional com leite vaporizado"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={CafeComLeiteImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Latte"
           coffeeDescription="Uma dose de café expresso com o dobro de leite e espuma cremosa"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={LatteImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Capuccino"
           coffeeDescription="Bebida com canela feita de doses iguais de café, leite e espuma"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={CappucinoImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Macchiato"
           coffeeDescription="Café expresso misturado com um pouco de leite quente e espuma"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={MacchiatoImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Mocaccino"
           coffeeDescription="Café expresso com calda de chocolate, pouco leite e espuma"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={MocaccinoImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Chocolate Quente"
           coffeeDescription="Bebida feita com chocolate dissolvido no leite quente e café"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={ChocolateQuenteImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Cubano"
           coffeeDescription="Drink gelado de café expresso com rum, creme de leite e hortelã"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={CubanoImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Havaiano"
           coffeeDescription="Bebida adocicada preparada com café e leite de coco"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={HavaianoImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Árabe"
           coffeeDescription="Bebida preparada com grãos de café árabe e especiarias"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={ArabeImg}
           coffeeTags={['tradicional']}
         />
         <CoffeeCard
           coffeeName="Irlandês"
           coffeeDescription="Bebida a base de café, uísque irlandês, açúcar e chantilly"
-          coffeePrice="9,90"
+          coffeePrice={9.9}
+          coffeeAmount={1}
           coffeeImage={IrlandesImg}
           coffeeTags={['tradicional']}
         />

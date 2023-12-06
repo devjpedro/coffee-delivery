@@ -34,13 +34,39 @@ export default function Checkout() {
   const navigate = useNavigate()
   const { coffees, setCoffees } = useContext(CoffeeContext)
 
+  function handleAdd(coffee: CoffeeProps) {
+    const updatedCoffees = coffees.map((c) => {
+      if (c.coffeeName === coffee.coffeeName) {
+        return { ...c, coffeeAmount: c.coffeeAmount + 1 }
+      }
+      return c
+    })
+    setCoffees(updatedCoffees)
+  }
+
+  function handleSubtract(coffee: CoffeeProps) {
+    if (coffee.coffeeAmount > 1) {
+      const updatedCoffees = coffees.map((c) => {
+        if (c.coffeeName === coffee.coffeeName) {
+          return { ...c, coffeeAmount: c.coffeeAmount - 1 }
+        }
+        return c
+      })
+      setCoffees(updatedCoffees)
+    } else {
+      handleRemoveCoffee(coffee)
+    }
+  }
+
   function handleRemoveCoffee(coffeeToRemove: CoffeeProps) {
     const coffeesWithoutDeletedOne = coffees.filter((coffee) => {
       return coffee.coffeeName !== coffeeToRemove.coffeeName
     })
     setCoffees(coffeesWithoutDeletedOne)
-    console.log(coffeesWithoutDeletedOne)
   }
+
+  console.log(coffees.length)
+
   return (
     <MainContainer>
       <CompleteOrder>
@@ -95,58 +121,68 @@ export default function Checkout() {
       <SelectedCoffees>
         <h3>Cafés selecionados</h3>
         <CheckoutContainer>
-          <CheckoutCoffee>
-            {coffees.map((coffee) => {
-              return (
-                <>
-                  <Coffee key={coffee.coffeeName}>
-                    <div className="coffeeDetail">
-                      <img src={coffee.coffeeImage} alt="" />
-                      <ActionsCoffee>
-                        <span>{coffee.coffeeName}</span>
-                        <div>
-                          <AmountCounter>
-                            <button>
-                              <Minus />
-                            </button>
-                            <span>{coffee.coffeeAmount}</span>
-                            <button>
-                              <Plus />
-                            </button>
-                          </AmountCounter>
-                          <RemoveButton
-                            onClick={() => handleRemoveCoffee(coffee)}
-                          >
-                            <Trash size={16} />
-                            Remover
-                          </RemoveButton>
+          {coffees.length ? (
+            <>
+              <CheckoutCoffee>
+                {coffees.map((coffee) => {
+                  return (
+                    <>
+                      <Coffee key={coffee.coffeeName}>
+                        <div className="coffeeDetail">
+                          <img src={coffee.coffeeImage} alt="" />
+                          <ActionsCoffee>
+                            <span>{coffee.coffeeName}</span>
+                            <div>
+                              <AmountCounter>
+                                <button onClick={() => handleSubtract(coffee)}>
+                                  <Minus />
+                                </button>
+                                <span>{coffee.coffeeAmount}</span>
+                                <button onClick={() => handleAdd(coffee)}>
+                                  <Plus />
+                                </button>
+                              </AmountCounter>
+                              <RemoveButton
+                                onClick={() => handleRemoveCoffee(coffee)}
+                              >
+                                <Trash size={16} />
+                                Remover
+                              </RemoveButton>
+                            </div>
+                          </ActionsCoffee>
                         </div>
-                      </ActionsCoffee>
-                    </div>
 
-                    <CoffeePrice>{`R$ ${coffee.coffeePrice}`}</CoffeePrice>
-                  </Coffee>
-                </>
-              )
-            })}
-          </CheckoutCoffee>
-          <OrderSummary>
-            <div>
-              <p>Total de itens</p>
-              <span>R$ 29,70</span>
-            </div>
-            <div>
-              <p>Entrega</p>
-              <span>R$ 3,50</span>
-            </div>
-            <div>
-              <strong>Total</strong>
-              <strong>R$ 33,20</strong>
-            </div>
-          </OrderSummary>
-          <ConfirmOrder onClick={() => navigate('/success')}>
-            Confirmar pedido
-          </ConfirmOrder>
+                        <CoffeePrice>{`R$ ${(
+                          coffee.coffeePrice * coffee.coffeeAmount
+                        )
+                          .toFixed(2)
+                          .replace('.', ',')}`}</CoffeePrice>
+                      </Coffee>
+                    </>
+                  )
+                })}
+              </CheckoutCoffee>
+              <OrderSummary>
+                <div>
+                  <p>Total de itens</p>
+                  <span>R$ 29,70</span>
+                </div>
+                <div>
+                  <p>Entrega</p>
+                  <span>R$ 3,50</span>
+                </div>
+                <div>
+                  <strong>Total</strong>
+                  <strong>R$ 33,20</strong>
+                </div>
+              </OrderSummary>
+              <ConfirmOrder onClick={() => navigate('/success')}>
+                Confirmar pedido
+              </ConfirmOrder>
+            </>
+          ) : (
+            <h2 style={{ textAlign: 'center' }}>Não há pedidos</h2>
+          )}
         </CheckoutContainer>
       </SelectedCoffees>
     </MainContainer>
