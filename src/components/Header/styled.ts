@@ -49,4 +49,22 @@ export const Cart = styled.button`
   border-radius: 6px;
   border: 0;
   cursor: pointer;
+  position: relative;
+
+  div {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 999px;
+    position: absolute;
+    top: -0.425rem;
+    right: -0.425rem;
+    background: ${(props) => props.theme['yellow-700']};
+    color: ${(props) => props.theme.white};
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
 `
