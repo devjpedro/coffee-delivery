@@ -1,10 +1,11 @@
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { Check, Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { useContext, useState } from 'react'
 import { CoffeeContext, CoffeeProps } from '../../../../contexts/CoffeeContext'
 import {
   ActionsCardCoffee,
   AddCartButton,
   AmountCounter,
+  CheckedButton,
   CoffeeCardStyle,
   FooterCoffeeCard,
   TagCoffee,
@@ -19,6 +20,7 @@ export function CoffeeCard({
 }: CoffeeProps) {
   const { coffees, setCoffees } = useContext(CoffeeContext)
   const [coffeeAmount, setCoffeeAmount] = useState<number>(1)
+  const [loading, setLoading] = useState(false)
 
   function handleSubtract() {
     if (coffeeAmount > 1) {
@@ -31,6 +33,8 @@ export function CoffeeCard({
   }
 
   function handleAddNewCoffee() {
+    setLoading(true)
+
     const newCoffee = {
       coffeeName,
       coffeeDescription,
@@ -44,13 +48,19 @@ export function CoffeeCard({
       (coffee) => coffee.coffeeName === newCoffee.coffeeName,
     )
 
-    if (coffeeIndex === -1) {
-      setCoffees([...coffees, newCoffee])
-    } else {
-      const updatedCoffees = [...coffees]
-      updatedCoffees[coffeeIndex].coffeeAmount += newCoffee.coffeeAmount
-      setCoffees(updatedCoffees)
+    const updateCoffees = () => {
+      if (coffeeIndex === -1) {
+        setCoffees([...coffees, newCoffee])
+      } else {
+        const updatedCoffees = [...coffees]
+        updatedCoffees[coffeeIndex].coffeeAmount += newCoffee.coffeeAmount
+        setCoffees(updatedCoffees)
+      }
+      setCoffeeAmount(1)
+      setLoading(false)
     }
+
+    setTimeout(updateCoffees, 1000)
   }
 
   return (
@@ -76,9 +86,15 @@ export function CoffeeCard({
               <Plus size={16} />
             </button>
           </AmountCounter>
-          <AddCartButton onClick={handleAddNewCoffee}>
-            <ShoppingCart weight="fill" size={22} />
-          </AddCartButton>
+          {!loading ? (
+            <AddCartButton onClick={handleAddNewCoffee} disabled={loading}>
+              <ShoppingCart weight="fill" size={22} />
+            </AddCartButton>
+          ) : (
+            <CheckedButton onClick={handleAddNewCoffee} disabled={loading}>
+              <Check weight="fill" size={32} />
+            </CheckedButton>
+          )}
         </ActionsCardCoffee>
       </FooterCoffeeCard>
     </CoffeeCardStyle>

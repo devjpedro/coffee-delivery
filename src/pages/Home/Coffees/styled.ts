@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const MainContainer = styled.main`
   max-width: 70rem;
@@ -132,19 +132,47 @@ export const AmountCounter = styled.div`
     color: ${(props) => props.theme['purple-500']};
   }
 `
-export const AddCartButton = styled.button`
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+`
+
+export const ActionButtonBase = styled.button`
   line-height: 0;
   background: none;
   border: 0;
   cursor: pointer;
-  background-color: ${(props) => props.theme['purple-500']};
-  color: ${(props) => props.theme.white};
   width: 2.375rem;
   height: 2.375rem;
   border-radius: 6px;
 
+  transition: all 0.2s;
+
+  &:disabled {
+    animation: ${pulse} 1s infinite;
+  }
+`
+
+export const AddCartButton = styled(ActionButtonBase)`
+  background-color: ${(props) => props.theme['purple-500']};
+  color: ${(props) => props.theme.white};
+
   &:hover {
     background-color: ${(props) => props.theme['purple-700']};
-    transition: all 0.2s;
+  }
+`
+export const CheckedButton = styled(ActionButtonBase)`
+  background-color: ${(props) => props.theme['yellow-500']};
+  color: ${(props) => props.theme.white};
+
+  &:hover {
+    background-color: ${(props) => props.theme['yellow-700']};
   }
 `
