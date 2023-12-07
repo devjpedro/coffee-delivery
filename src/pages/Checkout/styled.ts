@@ -104,6 +104,10 @@ export const AddressForm = styled.form`
     font-size: 0.875rem;
     color: ${(props) => props.theme['base-600']};
   }
+
+  .errorInput {
+    border-color: ${(props) => props.theme['red-500']};
+  }
 `
 export const PaymentContainer = styled.div`
   background-color: ${(props) => props.theme['base-200']};

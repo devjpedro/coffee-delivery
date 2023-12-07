@@ -18,4 +18,6 @@ export const defaultTheme = {
   'base-700': '#574F4D',
   'base-800': '#403937',
   'base-900': '#272221',
+
+  'red-500': '#e3091c',
 } as const

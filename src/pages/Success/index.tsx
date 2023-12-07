@@ -1,7 +1,11 @@
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useContext } from 'react'
 import SuccessImage from '../../assets/SuccessImage.png'
+import { CartContext } from '../../contexts/CartContext'
 import { ContentContainer, MainContainer, OrderInfo } from './styled'
 export default function Success() {
+  const { order } = useContext(CartContext)
+
   return (
     <MainContainer>
       <ContentContainer>
@@ -11,8 +15,7 @@ export default function Success() {
           <div className="local">
             <MapPin weight="fill" size={16} />
             <span>
-              Entrega em Rua João Daniel Martinelli, 102 Farrapos - Porto
-              Alegre, RS
+              {`Entrega em ${order[0].street}, ${order[0].district} - ${order[0].city}, ${order[0].uf}`}
             </span>
           </div>
           <div className="deliveryForecast">

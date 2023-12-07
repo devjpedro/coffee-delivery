@@ -1,6 +1,10 @@
 import { Check, Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { useContext, useState } from 'react'
-import { CoffeeContext, CoffeeProps } from '../../../../contexts/CoffeeContext'
+import {
+  CartContext,
+  CoffeeProps,
+  CoffeeTags,
+} from '../../../../contexts/CartContext'
 import {
   ActionsCardCoffee,
   AddCartButton,
@@ -18,7 +22,7 @@ export function CoffeeCard({
   coffeeImage,
   coffeeTags,
 }: CoffeeProps) {
-  const { coffees, setCoffees } = useContext(CoffeeContext)
+  const { coffees, setCoffees } = useContext(CartContext)
   const [coffeeAmount, setCoffeeAmount] = useState<number>(1)
   const [loading, setLoading] = useState(false)
 
@@ -67,7 +71,7 @@ export function CoffeeCard({
     <CoffeeCardStyle>
       <img src={coffeeImage} alt="Café Expresso Tradicional" />
       <TagCoffee>
-        {coffeeTags.map((tag) => (
+        {coffeeTags.map((tag: CoffeeTags) => (
           <span key={tag}>{tag}</span>
         ))}
       </TagCoffee>

@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components'
-import CoffeeContextProvider from './contexts/CoffeeContext'
+import CartContextProvider from './contexts/CartContext'
 import RoutesApp from './routes'
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
@@ -7,10 +7,10 @@ import { defaultTheme } from './styles/themes/default'
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <CoffeeContextProvider>
+      <CartContextProvider>
         <RoutesApp />
         <GlobalStyle />
-      </CoffeeContextProvider>
+      </CartContextProvider>
     </ThemeProvider>
   )
 }

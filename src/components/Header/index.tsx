@@ -2,12 +2,12 @@ import { MapPin, ShoppingCart } from 'phosphor-react'
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
-import { CoffeeContext } from '../../contexts/CoffeeContext'
+import { CartContext } from '../../contexts/CartContext'
 import { Cart, HeaderContainer, Location } from './styled'
 
 export default function Header() {
   const navigate = useNavigate()
-  const { coffees } = useContext(CoffeeContext)
+  const { coffees } = useContext(CartContext)
   return (
     <HeaderContainer>
       <Link to="/">

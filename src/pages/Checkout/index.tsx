@@ -9,8 +9,6 @@ import {
   Trash,
 } from 'phosphor-react'
 import { useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { CoffeeContext, CoffeeProps } from '../../contexts/CoffeeContext'
 import {
   ActionsCoffee,
   AddressContainer,
@@ -30,9 +28,53 @@ import {
   SelectedCoffees,
 } from './styled'
 
+import * as z from 'zod'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { CartContext, CoffeeProps } from '../../contexts/CartContext'
+
+const newOrderFormValidationSchema = z.object({
+  cep: z.number().min(1),
+  street: z.string().min(1),
+  numberAddress: z.number().min(1),
+  complement: z.string(),
+  district: z.string().min(1),
+  city: z.string().min(1),
+  uf: z.string().min(1),
+})
+
+type newOrderFormData = z.infer<typeof newOrderFormValidationSchema>
+
 export default function Checkout() {
+  const { coffees, setCoffees, order, setOrder } = useContext(CartContext)
   const navigate = useNavigate()
-  const { coffees, setCoffees } = useContext(CoffeeContext)
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<newOrderFormData>({
+    resolver: zodResolver(newOrderFormValidationSchema),
+  })
+
+  function handleSubmitOrder(data: newOrderFormData) {
+    const newOrder = {
+      cep: data.cep,
+      city: data.city,
+      complement: data.complement,
+      district: data.district,
+      numberAddress: data.numberAddress,
+      street: data.street,
+      uf: data.uf,
+      coffees,
+    }
+    setOrder([...order, newOrder])
+    reset()
+    navigate('/success')
+  }
 
   function handleAdd(coffee: CoffeeProps) {
     const updatedCoffees = coffees.map((c) => {
@@ -84,21 +126,55 @@ export default function Checkout() {
           </span>
           <p>Informe o endereço onde deseja receber seu pedido</p>
           <AddressForm>
-            <input type="number" placeholder="CEP" className="cep" />
-            <input type="text" placeholder="Rua" className="street" />
+            <input
+              type="number"
+              placeholder="CEP"
+              className={`cep ${errors.cep ? 'errorInput' : ''}`}
+              {...register('cep', {
+                valueAsNumber: true,
+              })}
+            />
+            <input
+              type="text"
+              placeholder="Rua"
+              className={`street ${errors.street ? 'errorInput' : ''}`}
+              {...register('street')}
+            />
             <input
               type="number"
               placeholder="Número"
-              className="numberAddress"
+              className={`numberAddress ${
+                errors.numberAddress ? 'errorInput' : ''
+              }`}
+              {...register('numberAddress', {
+                valueAsNumber: true,
+              })}
             />
             <input
               type="text"
               placeholder="Complemento"
-              className="complement"
+              className={`complement ${errors.complement ? 'errorInput' : ''}`}
+              {...register('complement')}
             />
-            <input type="text" placeholder="Bairro" className="district" />
-            <input type="text" placeholder="Cidade" className="city" />
-            <input type="text" placeholder="UF" className="uf" maxLength={2} />
+            <input
+              type="text"
+              placeholder="Bairro"
+              className={`district ${errors.district ? 'errorInput' : ''}`}
+              {...register('district')}
+            />
+            <input
+              type="text"
+              placeholder="Cidade"
+              className={`city ${errors.city ? 'errorInput' : ''}`}
+              {...register('city')}
+            />
+            <input
+              type="text"
+              placeholder="UF"
+              className={`uf ${errors.uf ? 'errorInput' : ''}`}
+              maxLength={2}
+              {...register('uf')}
+            />
           </AddressForm>
         </AddressContainer>
         <PaymentContainer>
@@ -132,39 +208,37 @@ export default function Checkout() {
               <CheckoutCoffee>
                 {coffees.map((coffee) => {
                   return (
-                    <>
-                      <Coffee key={coffee.coffeeName}>
-                        <div className="coffeeDetail">
-                          <img src={coffee.coffeeImage} alt="" />
-                          <ActionsCoffee>
-                            <span>{coffee.coffeeName}</span>
-                            <div>
-                              <AmountCounter>
-                                <button onClick={() => handleSubtract(coffee)}>
-                                  <Minus />
-                                </button>
-                                <span>{coffee.coffeeAmount}</span>
-                                <button onClick={() => handleAdd(coffee)}>
-                                  <Plus />
-                                </button>
-                              </AmountCounter>
-                              <RemoveButton
-                                onClick={() => handleRemoveCoffee(coffee)}
-                              >
-                                <Trash size={16} />
-                                Remover
-                              </RemoveButton>
-                            </div>
-                          </ActionsCoffee>
-                        </div>
+                    <Coffee key={coffee.coffeeName}>
+                      <div className="coffeeDetail">
+                        <img src={coffee.coffeeImage} alt="" />
+                        <ActionsCoffee>
+                          <span>{coffee.coffeeName}</span>
+                          <div>
+                            <AmountCounter>
+                              <button onClick={() => handleSubtract(coffee)}>
+                                <Minus />
+                              </button>
+                              <span>{coffee.coffeeAmount}</span>
+                              <button onClick={() => handleAdd(coffee)}>
+                                <Plus />
+                              </button>
+                            </AmountCounter>
+                            <RemoveButton
+                              onClick={() => handleRemoveCoffee(coffee)}
+                            >
+                              <Trash size={16} />
+                              Remover
+                            </RemoveButton>
+                          </div>
+                        </ActionsCoffee>
+                      </div>
 
-                        <CoffeePrice>{`R$ ${(
-                          coffee.coffeePrice * coffee.coffeeAmount
-                        )
-                          .toFixed(2)
-                          .replace('.', ',')}`}</CoffeePrice>
-                      </Coffee>
-                    </>
+                      <CoffeePrice>{`R$ ${(
+                        coffee.coffeePrice * coffee.coffeeAmount
+                      )
+                        .toFixed(2)
+                        .replace('.', ',')}`}</CoffeePrice>
+                    </Coffee>
                   )
                 })}
               </CheckoutCoffee>
@@ -188,7 +262,7 @@ export default function Checkout() {
                     .replace('.', ',')}`}</strong>
                 </div>
               </OrderSummary>
-              <ConfirmOrder onClick={() => navigate('/success')}>
+              <ConfirmOrder onClick={handleSubmit(handleSubmitOrder)}>
                 Confirmar pedido
               </ConfirmOrder>
             </>
