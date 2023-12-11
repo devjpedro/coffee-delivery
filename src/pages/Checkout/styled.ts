@@ -1,3 +1,5 @@
+import * as RadioGroup from '@radix-ui/react-radio-group'
+
 import styled from 'styled-components'
 
 export const MainContainer = styled.main`
@@ -88,6 +90,7 @@ export const AddressForm = styled.form`
 
   .complement {
     grid-column: 2 / -1;
+    position: relative;
   }
 
   input {
@@ -118,37 +121,45 @@ export const PaymentContainer = styled.div`
     padding-right: 1.25rem;
   }
 `
-export const PaymentMethod = styled.div`
+export const PaymentMethod = styled(RadioGroup.Root)`
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 2rem;
+`
+export const PaymentMethodButton = styled(RadioGroup.Item)`
+  flex: 1;
+  background-color: ${(props) => props.theme['base-400']};
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 1rem 0.875rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: ${(props) => props.theme['base-700']};
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 
-  button {
-    flex: 1;
-    background-color: ${(props) => props.theme['base-400']};
-    border: 0;
-    border-radius: 6px;
-    padding: 1rem;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: ${(props) => props.theme['base-700']};
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  button svg {
+  svg {
     color: ${(props) => props.theme['purple-500']};
     line-height: 0;
     margin-top: -0.1rem;
   }
 
-  button:hover {
+  &:hover {
     background-color: ${(props) => props.theme['base-500']};
     transition: all 0.2s;
+  }
+
+  &[data-state='checked'] {
+    background-color: ${(props) => props.theme['purple-300']};
+    border-color: ${(props) => props.theme['purple-500']};
+  }
+
+  &.errorInput {
+    border-color: ${(props) => props.theme['red-500']};
   }
 `
 

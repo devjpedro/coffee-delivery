@@ -24,6 +24,7 @@ import {
   OrderSummary,
   PaymentContainer,
   PaymentMethod,
+  PaymentMethodButton,
   RemoveButton,
   SelectedCoffees,
 } from './styled'
@@ -31,7 +32,7 @@ import {
 import * as z from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { CartContext, CoffeeProps } from '../../contexts/CartContext'
 
@@ -43,6 +44,7 @@ const newOrderFormValidationSchema = z.object({
   district: z.string().min(1),
   city: z.string().min(1),
   uf: z.string().min(1),
+  paymentMethod: z.string().min(1),
 })
 
 type newOrderFormData = z.infer<typeof newOrderFormValidationSchema>
@@ -55,6 +57,7 @@ export default function Checkout() {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<newOrderFormData>({
     resolver: zodResolver(newOrderFormValidationSchema),
@@ -69,9 +72,11 @@ export default function Checkout() {
       numberAddress: data.numberAddress,
       street: data.street,
       uf: data.uf,
+      paymentMethod: data.paymentMethod,
       coffees,
     }
     setOrder([...order, newOrder])
+    setCoffees([])
     reset()
     navigate('/success')
   }
@@ -185,19 +190,34 @@ export default function Checkout() {
           <p>
             O pagamento é feito na entrega. Escolha a forma que deseja pagar
           </p>
-          <PaymentMethod>
-            <button>
-              <CreditCard size={16} /> Cartão de Crédito
-            </button>
-            <button>
-              <Bank size={16} />
-              Cartão de Débito
-            </button>
-            <button>
-              <Money size={16} />
-              Dinheiro
-            </button>
-          </PaymentMethod>
+          <Controller
+            control={control}
+            name="paymentMethod"
+            render={({ field, fieldState }) => (
+              <PaymentMethod onValueChange={field.onChange} value={field.value}>
+                <PaymentMethodButton
+                  className={fieldState.error ? 'errorInput' : ''}
+                  value="creditCard"
+                >
+                  <CreditCard size={16} /> Cartão de Crédito
+                </PaymentMethodButton>
+                <PaymentMethodButton
+                  className={fieldState.error ? 'errorInput' : ''}
+                  value="debitCard"
+                >
+                  <Bank size={16} />
+                  Cartão de Débito
+                </PaymentMethodButton>
+                <PaymentMethodButton
+                  className={fieldState.error ? 'errorInput' : ''}
+                  value="money"
+                >
+                  <Money size={16} />
+                  Dinheiro
+                </PaymentMethodButton>
+              </PaymentMethod>
+            )}
+          />
         </PaymentContainer>
       </CompleteOrder>
       <SelectedCoffees>

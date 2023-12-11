@@ -5,6 +5,7 @@ import { CartContext } from '../../contexts/CartContext'
 import { ContentContainer, MainContainer, OrderInfo } from './styled'
 export default function Success() {
   const { order } = useContext(CartContext)
+  console.log(order)
 
   return (
     <MainContainer>
@@ -29,7 +30,13 @@ export default function Success() {
             <CurrencyDollar size={16} />
             <div>
               <span>Pagamento na entrega</span>
-              <strong>Cartão de Crédito</strong>
+              {order[0].paymentMethod === 'creditCard' && (
+                <strong>Cartão de Crédito</strong>
+              )}
+              {order[0].paymentMethod === 'debitCard' && (
+                <strong>Cartão de Débito</strong>
+              )}
+              {order[0].paymentMethod === 'money' && <strong>Dinheiro</strong>}
             </div>
           </div>
         </OrderInfo>
