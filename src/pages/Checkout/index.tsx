@@ -1,5 +1,6 @@
 import {
   Bank,
+  Coffee,
   CreditCard,
   CurrencyDollar,
   MapPinLine,
@@ -16,11 +17,12 @@ import {
   AmountCounter,
   CheckoutCoffee,
   CheckoutContainer,
-  Coffee,
   CoffeePrice,
+  Coffees,
   CompleteOrder,
   ConfirmOrder,
   MainContainer,
+  NoOrders,
   OrderSummary,
   PaymentContainer,
   PaymentMethod,
@@ -28,6 +30,8 @@ import {
   RemoveButton,
   SelectedCoffees,
 } from './styled'
+
+import InputMask from 'react-input-mask'
 
 import * as z from 'zod'
 
@@ -37,7 +41,7 @@ import { useNavigate } from 'react-router-dom'
 import { CartContext, CoffeeProps } from '../../contexts/CartContext'
 
 const newOrderFormValidationSchema = z.object({
-  cep: z.number().min(1),
+  cep: z.string().min(1),
   street: z.string().min(1),
   numberAddress: z.number().min(1),
   complement: z.string(),
@@ -57,6 +61,9 @@ export default function Checkout() {
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
+    setFocus,
     control,
     formState: { errors },
   } = useForm<newOrderFormData>({
@@ -120,6 +127,20 @@ export default function Checkout() {
   const deliveryFee = 3.5
   const totalValueOrderWithDeliveryFee = Number(totalValueOrder + deliveryFee)
 
+  const checkCEP = () => {
+    const cep = watch('cep')
+    const formatedCep = cep.replace(/\D/g, '')
+    fetch(`https://viacep.com.br/ws/${formatedCep}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        setValue('street', data.logradouro)
+        setValue('district', data.bairro)
+        setValue('city', data.localidade)
+        setValue('uf', data.uf)
+        setFocus('numberAddress')
+      })
+  }
+
   return (
     <MainContainer>
       <CompleteOrder>
@@ -131,13 +152,13 @@ export default function Checkout() {
           </span>
           <p>Informe o endereço onde deseja receber seu pedido</p>
           <AddressForm>
-            <input
-              type="number"
+            <InputMask
+              mask="99999-999"
+              type="text"
               placeholder="CEP"
               className={`cep ${errors.cep ? 'errorInput' : ''}`}
-              {...register('cep', {
-                valueAsNumber: true,
-              })}
+              {...register('cep')}
+              onBlur={checkCEP}
             />
             <input
               type="text"
@@ -228,7 +249,7 @@ export default function Checkout() {
               <CheckoutCoffee>
                 {coffees.map((coffee) => {
                   return (
-                    <Coffee key={coffee.coffeeName}>
+                    <Coffees key={coffee.coffeeName}>
                       <div className="coffeeDetail">
                         <img src={coffee.coffeeImage} alt="" />
                         <ActionsCoffee>
@@ -258,7 +279,7 @@ export default function Checkout() {
                       )
                         .toFixed(2)
                         .replace('.', ',')}`}</CoffeePrice>
-                    </Coffee>
+                    </Coffees>
                   )
                 })}
               </CheckoutCoffee>
@@ -287,7 +308,11 @@ export default function Checkout() {
               </ConfirmOrder>
             </>
           ) : (
-            <h2 style={{ textAlign: 'center' }}>Não há pedidos</h2>
+            <NoOrders>
+              <Coffee size={48} />
+              <h2>Você ainda não fez nenhum pedido</h2>
+              <p>Peça o seu café agora mesmo!</p>
+            </NoOrders>
           )}
         </CheckoutContainer>
       </SelectedCoffees>

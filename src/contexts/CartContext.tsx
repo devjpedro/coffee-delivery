@@ -17,7 +17,7 @@ export interface CoffeeProps {
 }
 
 export interface OrderProps {
-  cep: number
+  cep: string
   city: string
   complement: string
   district: string

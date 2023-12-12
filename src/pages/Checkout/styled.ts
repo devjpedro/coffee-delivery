@@ -202,7 +202,7 @@ export const CheckoutCoffee = styled.div`
   }
 `
 
-export const Coffee = styled.div`
+export const Coffees = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -335,5 +335,31 @@ export const ConfirmOrder = styled.button`
   &:hover {
     background-color: ${(props) => props.theme['yellow-700']};
     transition: all 0.2s;
+  }
+`
+
+export const NoOrders = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 12rem;
+
+  svg {
+    line-height: 0;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: ${(props) => props.theme['base-900']};
+  }
+
+  h2 {
+    border-top: 1px solid gray;
+    padding-top: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    color: ${(props) => props.theme['base-600']};
+    font-size: 0.875rem;
   }
 `
