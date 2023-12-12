@@ -16,12 +16,14 @@ export const MainContainer = styled.main`
   @media (max-width: 1200px) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
   }
 
   @media (max-width: 600px) {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+    gap: 3rem;
+    margin-top: 1rem;
   }
 `
 export const ContentContainer = styled.div`
@@ -83,5 +85,9 @@ export const OrderInfo = styled.div`
   .paymentMethod div {
     display: flex;
     flex-direction: column;
+  }
+
+  @media (max-width: 600px) {
+    padding: 1.25rem;
   }
 `

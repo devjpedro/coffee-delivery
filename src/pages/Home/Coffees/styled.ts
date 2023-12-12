@@ -13,6 +13,10 @@ export const MainContainer = styled.main`
   @media (max-width: 600px) {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+
+    h2 {
+      text-align: center;
+    }
   }
 
   h2 {

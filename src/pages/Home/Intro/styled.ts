@@ -7,6 +7,10 @@ export const IntroBackground = styled.section`
   width: 100%;
   margin: 0 auto;
 
+  img {
+    max-width: 100%;
+  }
+
   @media (max-width: 1200px) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -28,6 +32,8 @@ export const IntroContainer = styled.div`
   padding-top: 4rem;
   padding-bottom: 4rem;
   margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
 
   h1 {
     font-size: 3rem;
@@ -80,4 +86,21 @@ export const IntroContainer = styled.div`
   .coffee {
     background-color: ${(props) => props.theme['purple-500']};
   }
+
+  @media (max-width: 600px) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+
+    h1 {
+      text-align: center;
+      font-size: 2.75rem;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+`
+export const IntroContent = styled.div`
+  max-width: 36.5rem;
 `

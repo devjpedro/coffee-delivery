@@ -93,6 +93,20 @@ export const AddressForm = styled.form`
     position: relative;
   }
 
+  @media (max-width: 600px) {
+    .cep {
+      grid-column: 1 / -1;
+    }
+
+    .district {
+      grid-column: 1 / -1;
+    }
+
+    .city {
+      grid-column: 1 / 3;
+    }
+  }
+
   input {
     background-color: ${(props) => props.theme['base-300']};
     border: 1px solid ${(props) => props.theme['base-400']};
@@ -181,10 +195,6 @@ export const CheckoutContainer = styled.div`
   border-top-right-radius: 44px;
   border-bottom-right-radius: 6px;
   padding: 2.5rem;
-  @media (max-width: 600px) {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
 `
 export const CheckoutCoffee = styled.div`
   display: flex;
@@ -225,6 +235,10 @@ export const Coffees = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
+
+    .coffeeDetail {
+      flex-direction: column;
+    }
   }
 `
 

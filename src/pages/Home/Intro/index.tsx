@@ -1,12 +1,12 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import IntroImage from '../../../assets/Intro/intro-image.png'
-import { IntroBackground, IntroContainer } from './styled'
+import { IntroBackground, IntroContainer, IntroContent } from './styled'
 
 export default function Intro() {
   return (
     <IntroBackground>
       <IntroContainer>
-        <div>
+        <IntroContent>
           <h1>Encontre o café perfeito para qualquer hora do dia</h1>
           <p>
             Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
@@ -31,7 +31,7 @@ export default function Intro() {
               fresquinho até você
             </li>
           </ul>
-        </div>
+        </IntroContent>
         <div>
           <img
             src={IntroImage}
