@@ -367,7 +367,7 @@ export const NoOrders = styled.div`
   }
 
   h2 {
-    border-top: 1px solid gray;
+    border-top: 1px solid ${(props) => props.theme['base-500']};
     padding-top: 1rem;
     margin-bottom: 0.25rem;
   }

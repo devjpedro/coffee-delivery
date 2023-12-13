@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 
 export type CoffeeTags =
   | 'tradicional'
@@ -44,8 +44,16 @@ interface CartContextProviderProps {
 export default function CartContextProvider({
   children,
 }: CartContextProviderProps) {
-  const [coffees, setCoffees] = useState<CoffeeProps[]>([])
+  const initialCoffees = localStorage.getItem('@coffee-delivery:coffees')
+  const [coffees, setCoffees] = useState<CoffeeProps[]>(
+    initialCoffees ? JSON.parse(initialCoffees) : [],
+  )
   const [order, setOrder] = useState<OrderProps[]>([])
+
+  useEffect(() => {
+    localStorage.setItem('@coffee-delivery:coffees', JSON.stringify(coffees))
+  }, [coffees])
+
   return (
     <CartContext.Provider value={{ coffees, setCoffees, order, setOrder }}>
       {children}
