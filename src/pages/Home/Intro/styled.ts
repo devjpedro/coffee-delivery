@@ -33,6 +33,8 @@ export const IntroContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   overflow: hidden;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 
   h1 {
     font-size: 3rem;
