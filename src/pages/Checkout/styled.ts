@@ -27,7 +27,7 @@ export const MainContainer = styled.main`
   }
 `
 
-export const CompleteOrder = styled.div`
+export const CompleteOrderContainer = styled.div`
   flex: 1;
   max-width: 40rem;
   display: flex;
@@ -91,6 +91,15 @@ export const AddressForm = styled.form`
   .complement {
     grid-column: 2 / -1;
     position: relative;
+  }
+
+  .complement span {
+    color: ${(props) => props.theme['base-600']};
+    position: absolute;
+    top: 50%;
+    right: 0.75rem;
+    font-size: 0.75rem;
+    font-style: italic;
   }
 
   @media (max-width: 600px) {
@@ -177,7 +186,7 @@ export const PaymentMethodButton = styled(RadioGroup.Item)`
   }
 `
 
-export const SelectedCoffees = styled.div`
+export const SelectedCoffeesContainer = styled.div`
   flex: 1;
   max-width: 30rem;
   display: flex;
@@ -195,6 +204,10 @@ export const CheckoutContainer = styled.div`
   border-top-right-radius: 44px;
   border-bottom-right-radius: 6px;
   padding: 2.5rem;
+
+  @media (max-width: 600px) {
+    padding: 3rem;
+  }
 `
 export const CheckoutCoffee = styled.div`
   display: flex;
@@ -306,6 +319,10 @@ export const CoffeePrice = styled.span`
   color: ${(props) => props.theme['base-700']};
   align-self: start;
   flex: 1;
+
+  @media (max-width: 600px) {
+    align-self: center;
+  }
 `
 
 export const OrderSummary = styled.div`

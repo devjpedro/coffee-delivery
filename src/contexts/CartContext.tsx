@@ -31,8 +31,8 @@ export interface OrderProps {
 interface CartContextProps {
   coffees: CoffeeProps[]
   setCoffees: React.Dispatch<React.SetStateAction<CoffeeProps[]>>
-  order: OrderProps[]
-  setOrder: React.Dispatch<React.SetStateAction<OrderProps[]>>
+  order: OrderProps | null
+  setOrder: React.Dispatch<React.SetStateAction<OrderProps | null>>
 }
 
 export const CartContext = createContext({} as CartContextProps)
@@ -48,7 +48,7 @@ export default function CartContextProvider({
   const [coffees, setCoffees] = useState<CoffeeProps[]>(
     initialCoffees ? JSON.parse(initialCoffees) : [],
   )
-  const [order, setOrder] = useState<OrderProps[]>([])
+  const [order, setOrder] = useState<OrderProps | null>(null)
 
   useEffect(() => {
     localStorage.setItem('@coffee-delivery:coffees', JSON.stringify(coffees))
