@@ -149,6 +149,10 @@ export const PaymentMethod = styled(RadioGroup.Root)`
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 2rem;
+
+  &:focus {
+    box-shadow: none;
+  }
 `
 export const PaymentMethodButton = styled(RadioGroup.Item)`
   flex: 1;
@@ -192,6 +196,11 @@ export const SelectedCoffeesContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+
+  img {
+    filter: drop-shadow(rgba(0, 0, 0, 0.35) 0px 5px 3px);
+    transition: 0.2s ease-in-out;
+  }
 
   h3 {
     margin-bottom: 1rem;

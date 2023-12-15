@@ -5,7 +5,6 @@ import { CartContext } from '../../contexts/CartContext'
 import { ContentContainer, MainContainer, OrderInfo } from './styled'
 export default function Success() {
   const { order } = useContext(CartContext)
-  console.log(order)
 
   return (
     <MainContainer>
@@ -16,7 +15,7 @@ export default function Success() {
           <div className="local">
             <MapPin weight="fill" size={16} />
             <span>
-              {`Entrega em ${order[0].street}, ${order[0].district} - ${order[0].city}, ${order[0].uf}`}
+              {`Entrega em ${order?.street}, ${order?.district} - ${order?.city}, ${order?.uf}`}
             </span>
           </div>
           <div className="deliveryForecast">
@@ -30,17 +29,18 @@ export default function Success() {
             <CurrencyDollar size={16} />
             <div>
               <span>Pagamento na entrega</span>
-              {order[0].paymentMethod === 'creditCard' && (
+              {order?.paymentMethod === 'creditCard' && (
                 <strong>Cartão de Crédito</strong>
               )}
-              {order[0].paymentMethod === 'debitCard' && (
+              {order?.paymentMethod === 'debitCard' && (
                 <strong>Cartão de Débito</strong>
               )}
-              {order[0].paymentMethod === 'money' && <strong>Dinheiro</strong>}
+              {order?.paymentMethod === 'money' && <strong>Dinheiro</strong>}
             </div>
           </div>
         </OrderInfo>
       </ContentContainer>
+
       <img src={SuccessImage} alt="" />
     </MainContainer>
   )

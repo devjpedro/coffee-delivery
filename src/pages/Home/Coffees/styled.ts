@@ -50,6 +50,12 @@ export const CoffeeCardStyle = styled.div`
   img {
     margin-top: -2.5rem;
     margin-bottom: 0.75rem;
+    filter: drop-shadow(rgba(0, 0, 0, 0.35) 0px 5px 3px);
+    transition: 0.2s ease-in-out;
+  }
+
+  img:hover {
+    transform: translateY(-10px);
   }
 
   strong {
