@@ -114,6 +114,14 @@ export const AddressForm = styled.form`
     .city {
       grid-column: 1 / 3;
     }
+
+    .complement {
+      grid-column: 1 / -1;
+    }
+
+    .numberAddress {
+      grid-column: 1 / -1;
+    }
   }
 
   input {

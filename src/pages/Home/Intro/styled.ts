@@ -29,11 +29,10 @@ export const IntroContainer = styled.div`
   max-width: 70rem;
   display: flex;
   gap: 2rem;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
   margin: 0 auto;
   flex-wrap: wrap;
   justify-content: center;
+  overflow: hidden;
 
   h1 {
     font-size: 3rem;

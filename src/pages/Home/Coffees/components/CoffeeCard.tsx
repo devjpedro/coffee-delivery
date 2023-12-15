@@ -1,5 +1,6 @@
 import { Check, Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { useContext, useState } from 'react'
+import { Fade } from 'react-awesome-reveal'
 import {
   CartContext,
   CoffeeProps,
@@ -69,38 +70,40 @@ export function CoffeeCard({
 
   return (
     <CoffeeCardStyle>
-      <img src={coffeeImage} alt="Café Expresso Tradicional" />
-      <TagCoffee>
-        {coffeeTags.map((tag: CoffeeTags) => (
-          <span key={tag}>{tag}</span>
-        ))}
-      </TagCoffee>
-      <strong>{coffeeName}</strong>
-      <p>{coffeeDescription}</p>
-      <FooterCoffeeCard>
-        <strong>{coffeePrice.toFixed(2).replace('.', ',')}</strong>
-        <ActionsCardCoffee>
-          <AmountCounter>
-            <button onClick={handleSubtract}>
-              <Minus size={16} />
-            </button>
+      <Fade triggerOnce>
+        <img src={coffeeImage} alt="Café Expresso Tradicional" />
+        <TagCoffee>
+          {coffeeTags.map((tag: CoffeeTags) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </TagCoffee>
+        <strong>{coffeeName}</strong>
+        <p>{coffeeDescription}</p>
+        <FooterCoffeeCard>
+          <strong>{coffeePrice.toFixed(2).replace('.', ',')}</strong>
+          <ActionsCardCoffee>
+            <AmountCounter>
+              <button onClick={handleSubtract}>
+                <Minus size={16} />
+              </button>
 
-            <span>{coffeeAmount}</span>
-            <button onClick={handleAdd}>
-              <Plus size={16} />
-            </button>
-          </AmountCounter>
-          {!loading ? (
-            <AddCartButton onClick={handleAddNewCoffee} disabled={loading}>
-              <ShoppingCart weight="fill" size={22} />
-            </AddCartButton>
-          ) : (
-            <CheckedButton onClick={handleAddNewCoffee} disabled={loading}>
-              <Check weight="fill" size={32} />
-            </CheckedButton>
-          )}
-        </ActionsCardCoffee>
-      </FooterCoffeeCard>
+              <span>{coffeeAmount}</span>
+              <button onClick={handleAdd}>
+                <Plus size={16} />
+              </button>
+            </AmountCounter>
+            {!loading ? (
+              <AddCartButton onClick={handleAddNewCoffee} disabled={loading}>
+                <ShoppingCart weight="fill" size={22} />
+              </AddCartButton>
+            ) : (
+              <CheckedButton onClick={handleAddNewCoffee} disabled={loading}>
+                <Check weight="fill" size={32} />
+              </CheckedButton>
+            )}
+          </ActionsCardCoffee>
+        </FooterCoffeeCard>
+      </Fade>
     </CoffeeCardStyle>
   )
 }
