@@ -51,7 +51,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={ExpressoGeladoImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['tradicional', 'gelado']}
         />
         <CoffeeCard
           coffeeName="Café com Leite"
@@ -59,7 +59,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={CafeComLeiteImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['tradicional', 'com leite']}
         />
         <CoffeeCard
           coffeeName="Latte"
@@ -67,7 +67,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={LatteImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['tradicional', 'com leite']}
         />
         <CoffeeCard
           coffeeName="Capuccino"
@@ -75,7 +75,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={CappucinoImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['tradicional', 'com leite']}
         />
         <CoffeeCard
           coffeeName="Macchiato"
@@ -83,7 +83,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={MacchiatoImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['tradicional', 'com leite']}
         />
         <CoffeeCard
           coffeeName="Mocaccino"
@@ -91,7 +91,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={MocaccinoImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['tradicional', 'com leite']}
         />
         <CoffeeCard
           coffeeName="Chocolate Quente"
@@ -99,7 +99,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={ChocolateQuenteImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['tradicional', 'com leite']}
         />
         <CoffeeCard
           coffeeName="Cubano"
@@ -107,7 +107,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={CubanoImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['especial', 'gelado', 'alcoólico']}
         />
         <CoffeeCard
           coffeeName="Havaiano"
@@ -115,7 +115,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={HavaianoImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['especial']}
         />
         <CoffeeCard
           coffeeName="Árabe"
@@ -123,7 +123,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={ArabeImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['especial']}
         />
         <CoffeeCard
           coffeeName="Irlandês"
@@ -131,7 +131,7 @@ export default function Coffees() {
           coffeePrice={9.9}
           coffeeAmount={1}
           coffeeImage={IrlandesImg}
-          coffeeTags={['tradicional']}
+          coffeeTags={['especial', 'alcoólico']}
         />
       </CoffeesContainer>
     </MainContainer>

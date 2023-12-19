@@ -100,6 +100,7 @@ export const FooterCoffeeCard = styled.footer`
   width: 100%;
   height: auto;
   padding: 0 0.25rem;
+  gap: 0.5rem;
 
   strong {
     font-family: 'Baloo 2', sans-serif;

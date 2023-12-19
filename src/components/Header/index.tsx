@@ -1,7 +1,7 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import Logo from '../../assets/logo.png'
+import Logo from '../../assets/logo.svg'
 import { CartContext } from '../../contexts/CartContext'
 import { Cart, HeaderContainer, Location } from './styled'
 

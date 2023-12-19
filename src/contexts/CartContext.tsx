@@ -45,14 +45,21 @@ export default function CartContextProvider({
   children,
 }: CartContextProviderProps) {
   const initialCoffees = localStorage.getItem('@coffee-delivery:coffees')
+  const savedOrder = localStorage.getItem('@coffee-delivery:order')
   const [coffees, setCoffees] = useState<CoffeeProps[]>(
     initialCoffees ? JSON.parse(initialCoffees) : [],
   )
-  const [order, setOrder] = useState<OrderProps | null>(null)
+  const [order, setOrder] = useState<OrderProps | null>(
+    savedOrder ? JSON.parse(savedOrder) : null,
+  )
 
   useEffect(() => {
     localStorage.setItem('@coffee-delivery:coffees', JSON.stringify(coffees))
   }, [coffees])
+
+  useEffect(() => {
+    localStorage.setItem('@coffee-delivery:order', JSON.stringify(order))
+  }, [order])
 
   return (
     <CartContext.Provider value={{ coffees, setCoffees, order, setOrder }}>

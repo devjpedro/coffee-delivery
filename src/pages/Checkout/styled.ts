@@ -100,6 +100,7 @@ export const AddressForm = styled.form`
     right: 0.75rem;
     font-size: 0.75rem;
     font-style: italic;
+    pointer-events: none;
   }
 
   @media (max-width: 600px) {
