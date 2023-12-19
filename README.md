@@ -1,4 +1,4 @@
-# Coffee Delivery
+# Coffee Delivery ☕
 
 ## Sobre o Projeto
 
