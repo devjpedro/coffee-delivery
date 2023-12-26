@@ -23,7 +23,7 @@ export function CoffeeCard({
   coffeeImage,
   coffeeTags,
 }: CoffeeProps) {
-  const { coffees, setCoffees } = useContext(CartContext)
+  const { addNewCoffee } = useContext(CartContext)
   const [coffeeAmount, setCoffeeAmount] = useState<number>(1)
   const [loading, setLoading] = useState(false)
 
@@ -49,23 +49,12 @@ export function CoffeeCard({
       coffeeAmount,
     }
 
-    const coffeeIndex = coffees.findIndex(
-      (coffee) => coffee.coffeeName === newCoffee.coffeeName,
-    )
+    addNewCoffee(newCoffee)
 
-    const updateCoffees = () => {
-      if (coffeeIndex === -1) {
-        setCoffees([...coffees, newCoffee])
-      } else {
-        const updatedCoffees = [...coffees]
-        updatedCoffees[coffeeIndex].coffeeAmount += newCoffee.coffeeAmount
-        setCoffees(updatedCoffees)
-      }
-      setCoffeeAmount(1)
+    setTimeout(() => {
       setLoading(false)
-    }
-
-    setTimeout(updateCoffees, 1000)
+      setCoffeeAmount(1)
+    }, 800)
   }
 
   return (

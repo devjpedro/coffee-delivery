@@ -20,7 +20,8 @@ import {
 
 export function SelectedCoffees() {
   const { handleSubmit, reset } = useFormContext<newOrderFormData>()
-  const { coffees, setCoffees, setOrder } = useContext(CartContext)
+  const { coffees, setCoffees, setOrder, removeCoffee } =
+    useContext(CartContext)
 
   const navigate = useNavigate()
 
@@ -57,10 +58,7 @@ export function SelectedCoffees() {
   }
 
   function handleRemoveCoffee(coffeeToRemove: CoffeeProps) {
-    const coffeesWithoutDeletedOne = coffees.filter((coffee) => {
-      return coffee.coffeeName !== coffeeToRemove.coffeeName
-    })
-    setCoffees(coffeesWithoutDeletedOne)
+    removeCoffee(coffeeToRemove)
   }
 
   function handleSubmitOrder(data: newOrderFormData) {
