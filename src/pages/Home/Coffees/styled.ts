@@ -99,8 +99,8 @@ export const FooterCoffeeCard = styled.footer`
   margin-top: 2rem;
   width: 100%;
   height: auto;
-  padding: 0 0.25rem;
   gap: 0.5rem;
+  padding: 0 0.025rem;
 
   strong {
     font-family: 'Baloo 2', sans-serif;
@@ -131,6 +131,7 @@ export const AmountCounter = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.625rem;
+  width: 5.5rem;
 
   button {
     line-height: 0;
