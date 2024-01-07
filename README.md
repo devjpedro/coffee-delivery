@@ -2,7 +2,7 @@
 
 ## Sobre o Projeto
 
-A Coffee Delivery se trata de uma  aplicação para gerenciar um carrinho de compras de uma cafeteria fictícia.
+O Coffee Delivery se trata de uma  aplicação para gerenciar um carrinho de compras de uma cafeteria fictícia.
 
 ## Funcionalidades
 
